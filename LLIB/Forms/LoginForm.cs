@@ -61,7 +61,7 @@ namespace LLIB.Forms
             User user = _context.Users.FirstOrDefault(u => u.Status && u.Email == TxtMail.Text);
             if (user != null && Crypto.VerifyHashedPassword(user.Password, TxtPassword.Text)) ;
             {
-                Dashboard dashboard = new Dashboard();
+                PnlSearch dashboard = new PnlSearch();
                 dashboard.Show();
 
                 this.Hide();

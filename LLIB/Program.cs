@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LLIB.Forms;
+using LLIB.Data;
+
 
 namespace LLIB
 {
@@ -17,7 +19,9 @@ namespace LLIB
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
+            Application.Run(new Dashboard());
         }
+
+
     }
 }
