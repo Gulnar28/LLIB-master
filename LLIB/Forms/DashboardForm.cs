@@ -10,11 +10,21 @@ using System.Windows.Forms;
 
 namespace LLIB.Forms
 {
-    public partial class Dashboard : Form
+    public partial class DashboardForm : Form
     {
-        public Dashboard()
+        public DashboardForm ()
         {
             InitializeComponent();
+        }
+
+        private void PnlSearch_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Dashboard_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

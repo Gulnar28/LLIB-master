@@ -32,8 +32,9 @@ namespace LLIB.Models
         [Required]
         [MaxLength(50)]
         public string CreatedBy { get; set; }
+        public List<Order> Orders { get; set; }
 
-       
+
     }
 }
         

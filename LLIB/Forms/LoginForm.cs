@@ -19,10 +19,10 @@ namespace LLIB.Forms
     public partial class LoginForm : Form
     {
         private readonly LLIB.Data.LibraryContext _context;
+        
 
         public LoginForm()
         {
-            _context = new LibraryContext();
             InitializeComponent();
         }
 
@@ -61,38 +61,16 @@ namespace LLIB.Forms
             User user = _context.Users.FirstOrDefault(u => u.Status && u.Email == TxtMail.Text);
             if (user != null && Crypto.VerifyHashedPassword(user.Password, TxtPassword.Text)) ;
             {
-                PnlSearch dashboard = new PnlSearch();
+                DashboardForm dashboard = new DashboardForm ();
                 dashboard.Show();
 
                 this.Hide();
                 return;
             }
 
-            MessageBox.Show("E-poçt və ya şifrə yanlışdır");
+            
         }
     
-
-    
-
-
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         
     }
 }

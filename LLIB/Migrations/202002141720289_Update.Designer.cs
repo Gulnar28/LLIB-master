@@ -7,13 +7,13 @@ namespace LLIB.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class bookandcustomerandorderandusercreated : IMigrationMetadata
+    public sealed partial class Update : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(bookandcustomerandorderandusercreated));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Update));
         
         string IMigrationMetadata.Id
         {
-            get { return "202002131546368_bookandcustomerandorderandusercreated"; }
+            get { return "202002141720289_Update"; }
         }
         
         string IMigrationMetadata.Source

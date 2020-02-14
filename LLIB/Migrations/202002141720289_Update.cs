@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class bookandcustomerandorderandusercreated : DbMigration
+    public partial class Update : DbMigration
     {
         public override void Up()
         {
@@ -12,11 +12,36 @@
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false),
-                        Author = c.String(nullable: false),
+                        Name = c.String(nullable: false, maxLength: 100),
+                        Author = c.String(nullable: false, maxLength: 50),
                         Genre = c.String(nullable: false),
+                        Price = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Orders",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        CustomerId = c.Int(nullable: false),
+                        UserId = c.Int(nullable: false),
+                        BookId = c.Int(nullable: false),
+                        Date = c.DateTime(nullable: false),
+                        Deadline = c.DateTime(nullable: false),
+                        Note = c.String(maxLength: 500),
+                        IsDone = c.Boolean(nullable: false),
+                        DoneAt = c.DateTime(),
+                        Result = c.String(maxLength: 500),
+                        DoneUser = c.String(maxLength: 50),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Books", t => t.BookId, cascadeDelete: true)
+                .ForeignKey("dbo.Customers", t => t.CustomerId, cascadeDelete: true)
+                .ForeignKey("dbo.Users", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.CustomerId)
+                .Index(t => t.UserId)
+                .Index(t => t.BookId);
             
             CreateTable(
                 "dbo.Customers",
@@ -31,28 +56,6 @@
                         CreatedBy = c.String(nullable: false, maxLength: 50),
                     })
                 .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.Orders",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        PersonId = c.Int(nullable: false),
-                        UserId = c.Int(nullable: false),
-                        Date = c.DateTime(nullable: false),
-                        Deadline = c.DateTime(nullable: false),
-                        Note = c.String(maxLength: 500),
-                        IsDone = c.Boolean(nullable: false),
-                        DoneAt = c.DateTime(),
-                        Result = c.String(maxLength: 500),
-                        DoneUser = c.String(maxLength: 50),
-                        Customer_Id = c.Int(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Customers", t => t.Customer_Id)
-                .ForeignKey("dbo.Users", t => t.UserId, cascadeDelete: true)
-                .Index(t => t.UserId)
-                .Index(t => t.Customer_Id);
             
             CreateTable(
                 "dbo.Users",
@@ -72,12 +75,14 @@
         public override void Down()
         {
             DropForeignKey("dbo.Orders", "UserId", "dbo.Users");
-            DropForeignKey("dbo.Orders", "Customer_Id", "dbo.Customers");
-            DropIndex("dbo.Orders", new[] { "Customer_Id" });
+            DropForeignKey("dbo.Orders", "CustomerId", "dbo.Customers");
+            DropForeignKey("dbo.Orders", "BookId", "dbo.Books");
+            DropIndex("dbo.Orders", new[] { "BookId" });
             DropIndex("dbo.Orders", new[] { "UserId" });
+            DropIndex("dbo.Orders", new[] { "CustomerId" });
             DropTable("dbo.Users");
-            DropTable("dbo.Orders");
             DropTable("dbo.Customers");
+            DropTable("dbo.Orders");
             DropTable("dbo.Books");
         }
     }

@@ -10,11 +10,16 @@ namespace LLIB.Models
         public int Id { get; set; }
 
         [Required]
-        public int PersonId { get; set; }
+        [ForeignKey("Customer")]
+        public int CustomerId { get; set; }
 
         [Required]
         [ForeignKey("OwnerUser")]
         public int UserId { get; set; }
+
+        [Required]
+        [ForeignKey("Book")]
+        public int BookId { get; set; }
 
         [Required]
         public DateTime Date { get; set; }
@@ -39,5 +44,19 @@ namespace LLIB.Models
         public User OwnerUser { get; set; }
 
         public Customer Customer { get; set; }
+        public Book Book { get; set; }
     }
 }
+       
+
+        
+
+
+
+       
+
+
+        
+    
+
+    
