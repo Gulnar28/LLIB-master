@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+
 
 namespace LLIB.Models
 {
-   public class Book
+   public class BookGenre
     {
+        public static string Text { get; internal set; }
         public int Id { get; set; }
         [Required]
         [MaxLength(100)]

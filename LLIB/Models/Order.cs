@@ -44,7 +44,7 @@ namespace LLIB.Models
         public User OwnerUser { get; set; }
 
         public Customer Customer { get; set; }
-        public Book Book { get; set; }
+        public BookGenre Book { get; set; }
     }
 }
        

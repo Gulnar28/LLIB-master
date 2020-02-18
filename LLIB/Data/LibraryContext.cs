@@ -12,6 +12,7 @@ namespace LLIB.Data
 {
     class LibraryContext:DbContext
     {
+        internal object Books;
 
         public LibraryContext() : base("DefaultConnection")
         {
@@ -21,9 +22,7 @@ namespace LLIB.Data
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<User>Users { get; set; }
-        public DbSet<Book> Books { get; set; }
-
-
-
+        public DbSet<BookGenre> Book1 { get; set; }
+        public object Book { get; internal set; }
     }
 }
